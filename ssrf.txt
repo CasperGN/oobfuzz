@@ -1,0 +1,8 @@
+http://ssrfpoc.collabxyz.net:80
+http://ssrfpoc.collabxyz.net:443
+http://64.225.102.172:80
+http://64.225.102.172:443
+http://1088513708/
+http://1088513708:443/
+http://0x40E166AC/
+http://0x40E166AC:443/

