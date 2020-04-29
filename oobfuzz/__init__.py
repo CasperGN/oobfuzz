@@ -60,22 +60,19 @@ class OOBFuzz():
         print(f"{str(datetime.now())} - Done: Gathering urls for {target}")
 
         urls = list(set(urls))
-
-        with concurrent.futures.ThreadPoolExecutor(max_workers=self.threads) as executor:
-            worker = executor.map(self.fuzz, [url for url in urls])
-            return worker
-
-    def fuzz(self, url):
-        print(f"{str(datetime.now())} - Fuzzing params for {url}")
-        matches = self.paramRE.findall(url)
         result = []
-        for match in matches:
-            if str(match[1]).lower() in self.excludedParams:
-                continue
-            value = match[2]
-            for d in self.payloads:
-                for attack, payloadList in d.items():
-                    intruder = PyIntruder(redir=True, save=True, out=False, url=url, payload=payloadList)
-                    result.append(intruder.run())
-        print(f"{str(datetime.now())} - Done: Fuzzing params for {url}")
+        
+        for url in urls:
+            print(f"{str(datetime.now())} - Fuzzing params for {url}")
+            matches = self.paramRE.findall(url)
+
+            for match in matches:
+                if str(match[1]).lower() in self.excludedParams:
+                    continue
+                value = match[2]
+                for d in self.payloads:
+                    for attack, payloadList in d.items():
+                        intruder = PyIntruder(redir=True, save=True, out=False, url=url, payload=payloadList)
+                        result.append(intruder.run())
+            print(f"{str(datetime.now())} - Done: Fuzzing params for {url}")
         return result
