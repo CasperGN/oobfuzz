@@ -1,25 +1,22 @@
-import subprocess, os
+from subprocess import Popen, PIPE
+from os import environ
 from setuptools import setup, find_packages
 from setuptools.command.install import install
 
 with open('README.md', 'r') as desc:
     long_desc = desc.read()
 
-class InstallGoDependencies(install):
+class InstallDependencies(install):
 
     def run(self):
-        # Set path
-        self.pwd = os.path.dirname(os.path.realpath(__file__))
-
+        
         # Install Go
-        with open(os.devnull, 'w') as devnull:
-            process = subprocess.Popen(['/usr/bin/apt-get', 'install', 'golang', '-y'], stdout=subprocess.PIPE, stderr=devnull)
-        stdout = process.communicate()[0].decode('utf-8').split('\n')
+        process = Popen(['/usr/bin/apt-get', 'install', 'golang', '-y'], stdout=PIPE)
+        stdout = process.communicate()[0].decode('utf-8')
 
         # Get GAU dependency
-        with open(os.devnull, 'w') as devnull:
-            process = subprocess.Popen(['/usr/bin/go', 'get', '-u', 'github.com/lc/gau'], stdout=subprocess.PIPE, stderr=devnull)
-        stdout = process.communicate()[0].decode('utf-8').split('\n')
+        process = Popen(['/usr/bin/go', 'get', '-u', 'github.com/lc/gau'], stdout=PIPE)
+        stdout = process.communicate()[0].decode('utf-8')
 
         install.run(self)
 
@@ -33,10 +30,11 @@ setup(
         long_description_content_type = 'text/markdown',
         url = 'https://github.com/Entropy-Team/recon-oobfuzz',
         packages = find_packages(),
-        data_files=[('/usr/bin/', [f'{os.environ["HOME"]}/go/bin/gau'])],
-        cmdclass={
-            'install': InstallGoDependencies,
-        },
+        install_requires=[
+            'requests',
+        ],
+        data_files=[('/usr/bin/', [f'{environ["HOME"]}/go/bin/gau'])],
+        cmdclass={'install': InstallDependencies},
         classifiers = [
             'Programming Language :: Python :: 3',
             'License :: OSI Approved :: MIT License',
