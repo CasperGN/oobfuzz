@@ -72,7 +72,7 @@ class OOBFuzz():
                 value = match[2]
                 for d in self.payloads:
                     for attack, payloadList in d.items():
-                        intruder = PyIntruder(redir=True, save=True, out=False, url=url, payload=payloadList)
+                        intruder = PyIntruder(redir=True, save=True, out=False, url=url.replace(value, '$'), payload=payloadList)
                         result.append(intruder.run())
             print(f"{str(datetime.now())} - Done: Fuzzing params for {url}")
         return result
