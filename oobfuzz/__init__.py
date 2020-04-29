@@ -20,7 +20,7 @@ class OOBFuzz():
         self.payloads = []
         self.excludedParams = ['submit']
 
-        self.id = str(datetime.now()).split('.')[0].replace(' ', 'T')
+        self.id = str(datetime.now()).split(':')[0].replace(' ', 'T')
 
         (_, _, filenames) = next(walk('./payloads/'))
         for filename in filenames:
