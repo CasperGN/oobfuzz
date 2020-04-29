@@ -17,6 +17,9 @@ class InstallDependencies(install):
         # Get GAU dependency
         process = Popen(['/usr/bin/go', 'get', '-u', 'github.com/lc/gau'], stdout=PIPE)
         stdout = process.communicate()[0].decode('utf-8')
+        
+        process = Popen(['/usr/bin/cp', f'{environ["HOME"]}/go/bin/gau', '/usr/bin/gau'], stdout=PIPE)
+        stdout = process.communicate()[0].decode('utf-8')
 
         install.run(self)
 
@@ -29,12 +32,12 @@ setup(
         long_description = long_desc,
         long_description_content_type = 'text/markdown',
         url = 'https://github.com/Entropy-Team/recon-oobfuzz',
+        cmdclass={'install': InstallDependencies},
         packages = find_packages(),
         install_requires=[
             'requests',
         ],
-        data_files=[('/usr/bin/', [f'{environ["HOME"]}/go/bin/gau'])],
-        cmdclass={'install': InstallDependencies},
+        #data_files=[('/usr/bin/', [f'{environ["HOME"]}/go/bin/gau'])],
         classifiers = [
             'Programming Language :: Python :: 3',
             'License :: OSI Approved :: MIT License',
