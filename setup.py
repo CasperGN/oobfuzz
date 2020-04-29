@@ -18,7 +18,7 @@ class InstallDependencies(install):
         process = Popen(['/usr/bin/go', 'get', '-u', 'github.com/lc/gau'], stdout=PIPE)
         stdout = process.communicate()[0].decode('utf-8')
         
-        process = Popen(['/usr/bin/cp', f'{environ["HOME"]}/go/bin/gau', '/usr/bin/gau'], stdout=PIPE)
+        process = Popen(['/bin/cp', f'{environ["HOME"]}/go/bin/gau', '/usr/bin/gau'], stdout=PIPE)
         stdout = process.communicate()[0].decode('utf-8')
 
         install.run(self)
