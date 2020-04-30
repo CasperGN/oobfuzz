@@ -75,7 +75,7 @@ class OOBFuzz():
                         intruder = PyIntruder(redir=True, save=False, out=False, url=url.replace(value, '$'), payload=payloadList)
                         for res in intruder.run():
                             if self.exclude:
-                                if res[0] in self.exclude:
+                                if str(res[0]) in self.exclude:
                                     continue
                             print(f'{res[0]}\t{res[1]}\t{res[2]}\t{res[3]}')
                             result.append(res)
