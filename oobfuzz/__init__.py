@@ -43,7 +43,7 @@ class OOBFuzz():
 
         print("Status\tLength\tTime\tHost")
         print("---------------------------------")
-        with concurrent.futures.ThreadPoolExecutor(max_workers=len(self.threads)) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=self.threads) as executor:
             worker = executor.map(self.run, [target for target in self.targets])
             for result in worker:
                 pass                   
