@@ -55,13 +55,13 @@ class OOBFuzz():
             process = Popen(['/usr/bin/gau', '-subs', target], stdout=PIPE, stderr=dn)
         stdout = process.communicate()[0].decode("utf-8").split("\n")
         urls = [url for url in stdout if '=' in url]
-        print(f"{str(datetime.now())} - Done: Gathering urls for {target}")
+        #print(f"{str(datetime.now())} - Done: Gathering urls for {target}")
 
         urls = list(set(urls))
         result = []
         
         for url in urls:
-            print(f"{str(datetime.now())} - Fuzzing params for {url}")
+            #print(f"{str(datetime.now())} - Fuzzing params for {url}")
             matches = self.paramRE.findall(url)
 
             for match in matches:
