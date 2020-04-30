@@ -18,6 +18,13 @@ OOBFuzz requires [GAU](https://github.com/lc/gau) to run. As such, we need to `a
 This requires root permissions (unless obscure suid perhaps?) in order to do so. 
 If in doubt, please chech [setup.py](setup.py) to ensure that nothing malicious is happening.
 
+## Run
+
+Most often want to run as such:  
+```
+$ python3 fuzzer.py --targets targets.txt --threads 17
+```
+
 ## External libs and thanks
   
 - [GAU](https://github.com/lc/gau)
