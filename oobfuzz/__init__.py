@@ -41,18 +41,16 @@ class OOBFuzz():
         else:
             self.targets.append(target)
 
+        print("Status\tLength\tTime\tHost")
+        print("---------------------------------")
         with concurrent.futures.ThreadPoolExecutor(max_workers=len(self.threads)) as executor:
             worker = executor.map(self.run, [target for target in self.targets])
             for result in worker:
-                print("Status\tLength\tTime\tHost")
-                print("---------------------------------")
-                for payloadResult in result:
-                    for res in payloadResult:
-                        print(f'{res[0]}\t{res[1]}\t{res[2]}\t{res[3]}')
+                pass                   
 
     def run(self, target):
 
-        print(f"{str(datetime.now())} - Gathering urls for {target}")
+        #print(f"{str(datetime.now())} - Gathering urls for {target}")
         with open(devnull, 'w') as dn:
             process = Popen(['/usr/bin/gau', '-subs', target], stdout=PIPE, stderr=dn)
         stdout = process.communicate()[0].decode("utf-8").split("\n")
@@ -73,6 +71,8 @@ class OOBFuzz():
                 for d in self.payloads:
                     for attack, payloadList in d.items():
                         intruder = PyIntruder(redir=True, save=False, out=False, url=url.replace(value, '$'), payload=payloadList)
-                        result.append(intruder.run())
-            print(f"{str(datetime.now())} - Done: Fuzzing params for {url}")
+                        for res in intruder.run():
+                            print(f'{res[0]}\t{res[1]}\t{res[2]}\t{res[3]}')
+                            result.append(res)
+            #print(f"{str(datetime.now())} - Done: Fuzzing params for {url}")
         return result
