@@ -10,10 +10,15 @@ from urllib.parse import quote
 
 class OOBFuzz():
 
-    def __init__(self, output, threads, target, targets):
+    def __init__(self, output, threads, target, targets, exclude):
         self.output = output
         self.threads = threads
         self.targets = []
+
+        if exclude:
+            self.exclude = exclude.split(',')
+        else:
+            self.exclude = exclude
 
         self.paramRE = re.compile(r'(([\w]+)=([^&]+)+)')
         
@@ -50,18 +55,15 @@ class OOBFuzz():
 
     def run(self, target):
 
-        #print(f"{str(datetime.now())} - Gathering urls for {target}")
         with open(devnull, 'w') as dn:
             process = Popen(['/usr/bin/gau', '-subs', target], stdout=PIPE, stderr=dn)
         stdout = process.communicate()[0].decode("utf-8").split("\n")
         urls = [url for url in stdout if '=' in url]
-        #print(f"{str(datetime.now())} - Done: Gathering urls for {target}")
 
         urls = list(set(urls))
         result = []
         
         for url in urls:
-            #print(f"{str(datetime.now())} - Fuzzing params for {url}")
             matches = self.paramRE.findall(url)
 
             for match in matches:
@@ -72,7 +74,9 @@ class OOBFuzz():
                     for attack, payloadList in d.items():
                         intruder = PyIntruder(redir=True, save=False, out=False, url=url.replace(value, '$'), payload=payloadList)
                         for res in intruder.run():
+                            if self.exclude:
+                                if res[0] in self.exclude:
+                                    continue
                             print(f'{res[0]}\t{res[1]}\t{res[2]}\t{res[3]}')
                             result.append(res)
-            #print(f"{str(datetime.now())} - Done: Fuzzing params for {url}")
         return result
