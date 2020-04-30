@@ -41,7 +41,7 @@ class OOBFuzz():
         else:
             self.targets.append(target)
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=len(self.targets)) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=len(self.threads)) as executor:
             worker = executor.map(self.run, [target for target in self.targets])
             for result in worker:
                 print("Status\tLength\tTime\tHost")
@@ -72,7 +72,7 @@ class OOBFuzz():
                 value = match[2]
                 for d in self.payloads:
                     for attack, payloadList in d.items():
-                        intruder = PyIntruder(redir=True, save=True, out=False, url=url.replace(value, '$'), payload=payloadList)
+                        intruder = PyIntruder(redir=True, save=False, out=False, url=url.replace(value, '$'), payload=payloadList)
                         result.append(intruder.run())
             print(f"{str(datetime.now())} - Done: Fuzzing params for {url}")
         return result
