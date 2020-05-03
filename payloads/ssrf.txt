@@ -1,5 +1,5 @@
-http://ssrfpoc.collabxyz.net:80
-http://ssrfpoc.collabxyz.net:443
+http://ssrfpoc.callback.collabxyz.net:80
+http://ssrfpoc.callback.collabxyz.net:443
 http://64.225.102.172:80
 http://64.225.102.172:443
 http://1088513708/
