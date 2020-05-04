@@ -96,9 +96,11 @@ class OOBFuzz():
                             user_agent = choice(self.useragents)
                             headers = {'User-Agent': user_agent}
                             payload = payload.strip('\n')
-                            url = baseurl.replace(value, payload)
-                            if '~~ID_BASE64~~' in url:
-                                url = url.replace('~~ID_BASE64~~', b64encode(bytes(url, encoding='utf-8')).decode('utf-8'))
+                            base = baseurl.replace(value, payload)
+                            if 'ID_BASE64' in base:
+                                url = base.replace('ID_BASE64', b64encode(bytes(base, encoding='utf-8')).decode('utf-8'))
+                            else:
+                                url = base
                             try:
                                 r = requests.get(url, headers=headers, allow_redirects=self.redir, proxies=self.proxy, verify=False)
                                 # Here we attempt to circumvent rate limit and/or temporary blocks on our IP
@@ -115,7 +117,7 @@ class OOBFuzz():
                                         continue
                             except (SSL.SysCallError, gaierror):
                                 continue
-                            if r.status_code in self.exclude:
+                            if str(r.status_code) in self.exclude:
                                 continue
                             result.append([r.status_code, len(r.content), str(r.elapsed.total_seconds()*1000)[:7], url])
                             print(f'{r.status_code}\t{len(r.content)}\t{str(r.elapsed.total_seconds()*1000)[:7]}\t{url}')

