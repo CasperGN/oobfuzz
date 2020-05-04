@@ -36,8 +36,8 @@ setup(
         packages = find_packages(),
         install_requires=[
             'requests',
+            'pyopenssl',
         ],
-        #data_files=[('/usr/bin/', [f'{environ["HOME"]}/go/bin/gau'])],
         classifiers = [
             'Programming Language :: Python :: 3',
             'License :: OSI Approved :: MIT License',
