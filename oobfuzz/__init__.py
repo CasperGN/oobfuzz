@@ -97,7 +97,7 @@ class OOBFuzz():
                             headers = {'User-Agent': user_agent}
                             payload = payload.strip('\n')
                             url = baseurl.replace(value, payload)
-                            if '~~ID_BASE64~~' in payload:
+                            if '~~ID_BASE64~~' in url:
                                 url = url.replace('~~ID_BASE64~~', b64encode(bytes(url, encoding='utf-8')).decode('utf-8'))
                             try:
                                 r = requests.get(url, headers=headers, allow_redirects=self.redir, proxies=self.proxy, verify=False)
