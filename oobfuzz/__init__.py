@@ -115,6 +115,8 @@ class OOBFuzz():
                                         continue
                             except (SSL.SysCallError, gaierror):
                                 continue
+                            if r.status_code in self.exclude:
+                                continue
                             result.append([r.status_code, len(r.content), str(r.elapsed.total_seconds()*1000)[:7], url])
                             print(f'{r.status_code}\t{len(r.content)}\t{str(r.elapsed.total_seconds()*1000)[:7]}\t{url}')
                             if r.status_code == 404:
