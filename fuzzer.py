@@ -1,4 +1,4 @@
-import argparse, sys
+import argparse, sys, re
 from oobfuzz import OOBFuzz
 
 parser = argparse.ArgumentParser(prog='OOBFuzz')
@@ -18,6 +18,12 @@ if len(sys.argv) == 1:
     sys.exit(1)
 
 args = parser.parse_args()
+
+if args.proxy:
+    proxyMatch = re.findall('(http(?:s)?://[a-zA-Z0-9\.-]+:[\d]{1,5})', args.proxy)
+    if len(proxyMatch) <= 0:
+        parser.print_help(sys.stderr)
+        exit(1)
 
 output = args.output if args.output else None
 callback = args.threads if args.threads else 5
