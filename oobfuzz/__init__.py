@@ -10,6 +10,7 @@ from random import choice
 from time import sleep
 from socket import gaierror
 from OpenSSL import SSL
+from base64 import b64encode
 
 class OOBFuzz():
 
@@ -17,6 +18,7 @@ class OOBFuzz():
 
         disable_warnings()
 
+        self.proxy = None
         if proxy:
             self.proxy = {"http": proxy, "https": proxy}
         self.output = output
@@ -95,6 +97,8 @@ class OOBFuzz():
                             headers = {'User-Agent': user_agent}
                             payload = payload.strip('\n')
                             url = baseurl.replace(value, payload)
+                            if '~~ID_BASE64~~' in payload:
+                                url = url.replace('~~ID_BASE64~~', b64encode(bytes(url, encoding='utf-8')).decode('utf-8'))
                             try:
                                 r = requests.get(url, headers=headers, allow_redirects=self.redir, proxies=self.proxy, verify=False)
                                 # Here we attempt to circumvent rate limit and/or temporary blocks on our IP
