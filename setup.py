@@ -37,6 +37,7 @@ setup(
         install_requires=[
             'requests',
             'pyopenssl',
+            'cffi',
         ],
         classifiers = [
             'Programming Language :: Python :: 3',

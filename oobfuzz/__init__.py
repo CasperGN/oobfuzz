@@ -14,9 +14,11 @@ from base64 import b64encode
 
 class OOBFuzz():
 
-    def __init__(self, output, threads, target, targets, exclude, proxy, blocks, redir):
+    def __init__(self, output, threads, target, targets, exclude, proxy, blocks, redir, urls):
 
         disable_warnings()
+
+
 
         self.proxy = None
         if proxy:
@@ -63,6 +65,20 @@ class OOBFuzz():
         else:
             self.targets.append(target)
 
+        self.gau = True
+        if urls:
+            self.gau = False
+            if targets:
+                try:
+                    with open(f'{urls}', 'r') as targetsFile:
+                        for targetName in targetsFile:
+                            self.targets.append(targetName.rstrip())
+                except (FileNotFoundError):
+                    print(f'Unable to open {targets}, ensure proper permissions or that the file exists..')
+                    sys.exit(1)
+            else:
+                self.targets.append(target)
+
         print("Status\tLength\tTime\tHost")
         print("---------------------------------")
         with concurrent.futures.ThreadPoolExecutor(max_workers=self.threads) as executor:
@@ -72,12 +88,16 @@ class OOBFuzz():
 
     def run(self, target):
 
-        with open(devnull, 'w') as dn:
-            process = Popen(['/usr/bin/gau', '-subs', target], stdout=PIPE, stderr=dn)
-        stdout = process.communicate()[0].decode("utf-8").split("\n")
-        urls = [url for url in stdout if '=' in url]
+        if self.gau:
+            with open(devnull, 'w') as dn:
+                process = Popen(['/usr/bin/gau', '-subs', target], stdout=PIPE, stderr=dn)
+            stdout = process.communicate()[0].decode("utf-8").split("\n")
+            urls = [url for url in stdout if '=' in url]
 
-        urls = list(set(urls))
+            urls = list(set(urls))
+        else:
+            urls = list(set(self.target))
+            
         result = []
         
         for baseurl in urls:

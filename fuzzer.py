@@ -10,6 +10,7 @@ parser.add_argument('--exclude', type=str, help='String of response codes sepera
 parser.add_argument('--proxy', type=str, help='Proxy to route through (example "http://localhost:8080")')
 parser.add_argument('--blocks', type=int, help='Amount of blocks registered to exit (default: 5). This means that if 5 blocks are registered the fuzzer will exit')
 parser.add_argument('--redir', help='Allow HTTP redirects', action="store_true")
+parser.add_argument('--urls', type=str, help='file with newline seperator including endpoints. This will skip fetch through Gau')
 
 
 
@@ -33,6 +34,7 @@ exclude = args.exclude if args.exclude else None
 proxy = args.proxy if args.proxy else None
 blocks = args.blocks if args.blocks else 5
 redir = args.redir if args.redir else False
+urls = args.urls if args.urls else None
 
 
-oobfuzz = OOBFuzz(output, callback, target, targets, exclude, proxy, blocks, redir)
+oobfuzz = OOBFuzz(output, callback, target, targets, exclude, proxy, blocks, redir, urls)
