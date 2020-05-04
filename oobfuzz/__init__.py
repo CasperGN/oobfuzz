@@ -18,8 +18,7 @@ class OOBFuzz():
 
         disable_warnings()
 
-
-
+        self.gau = True
         self.proxy = None
         if proxy:
             self.proxy = {"http": proxy, "https": proxy}
@@ -62,11 +61,9 @@ class OOBFuzz():
             except (FileNotFoundError):
                 print(f'Unable to open {targets}, ensure proper permissions or that the file exists..')
                 sys.exit(1)
-        else:
+        elif target:
             self.targets.append(target)
-
-        self.gau = True
-        if urls:
+        elif urls:
             self.gau = False
             if targets:
                 try:
@@ -97,7 +94,7 @@ class OOBFuzz():
             urls = list(set(urls))
         else:
             urls = list(set(self.target))
-            
+
         result = []
         
         for baseurl in urls:
