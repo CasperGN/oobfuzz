@@ -65,16 +65,13 @@ class OOBFuzz():
             self.targets.append(target)
         elif urls:
             self.gau = False
-            if targets:
-                try:
-                    with open(f'{urls}', 'r') as targetsFile:
-                        for targetName in targetsFile:
-                            self.targets.append(targetName.rstrip())
-                except (FileNotFoundError):
-                    print(f'Unable to open {targets}, ensure proper permissions or that the file exists..')
-                    sys.exit(1)
-            else:
-                self.targets.append(target)
+            try:
+                with open(f'{urls}', 'r') as targetsFile:
+                    for targetName in targetsFile:
+                        self.targets.append(targetName.rstrip())
+            except (FileNotFoundError):
+                print(f'Unable to open {targets}, ensure proper permissions or that the file exists..')
+                sys.exit(1)
 
         print("Status\tLength\tTime\tHost")
         print("---------------------------------")
@@ -93,7 +90,7 @@ class OOBFuzz():
 
             urls = list(set(urls))
         else:
-            urls = list(set(self.target))
+            urls = list(set(self.targets))
 
         result = []
         
