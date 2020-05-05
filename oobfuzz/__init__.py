@@ -14,7 +14,7 @@ from base64 import b64encode
 
 class OOBFuzz():
 
-    def __init__(self, output, threads, target, targets, exclude, proxy, blocks, redir, urls):
+    def __init__(self, output, threads, target, targets, exclude, proxy, blocks, redir, urls, stdin_targets):
 
         disable_warnings()
 
@@ -72,13 +72,15 @@ class OOBFuzz():
             except (FileNotFoundError):
                 print(f'Unable to open {targets}, ensure proper permissions or that the file exists..')
                 sys.exit(1)
+        elif stdin_targets:
+            self.targets = stdin_targets
 
         print("Status\tLength\tTime\tHost")
         print("---------------------------------")
         with concurrent.futures.ThreadPoolExecutor(max_workers=self.threads) as executor:
             worker = executor.map(self.run, [target for target in self.targets])
             for result in worker:
-                pass                   
+                pass
 
     def run(self, target):
 
@@ -131,7 +133,7 @@ class OOBFuzz():
                                         continue
                             except (SSL.SysCallError, gaierror):
                                 continue
-                            if str(r.status_code) in self.exclude:
+                            if self.exclude and str(r.status_code) in self.exclude:
                                 continue
                             result.append([r.status_code, len(r.content), str(r.elapsed.total_seconds()*1000)[:7], url])
                             print(f'{r.status_code}\t{len(r.content)}\t{str(r.elapsed.total_seconds()*1000)[:7]}\t{url}')

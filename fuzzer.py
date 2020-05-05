@@ -11,6 +11,8 @@ parser.add_argument('--proxy', type=str, help='Proxy to route through (example "
 parser.add_argument('--blocks', type=int, help='Amount of blocks registered to exit (default: 5). This means that if 5 blocks are registered the fuzzer will exit')
 parser.add_argument('--redir', help='Allow HTTP redirects', action="store_true")
 parser.add_argument('--urls', type=str, help='file with newline seperator including endpoints. This will skip fetch through Gau')
+parser.add_argument('--stdin-targets', nargs=argparse.REMAINDER)
+parser.add_argument('stdin', nargs='?', type=argparse.FileType('r'), default=sys.stdin)
 
 
 
@@ -20,6 +22,12 @@ if len(sys.argv) == 1:
 
 args = parser.parse_args()
 
+if not sys.stdin.isatty():
+    stdin_targets = parser.parse_args().stdin.read().splitlines()
+else:
+    stdin_targets = None
+
+
 if args.proxy:
     proxyMatch = re.findall('(http(?:s)?://[a-zA-Z0-9\.-]+:[\d]{1,5})', args.proxy)
     if len(proxyMatch) <= 0:
@@ -27,7 +35,7 @@ if args.proxy:
         exit(1)
 
 output = args.output if args.output else None
-callback = args.threads if args.threads else 5
+threads = args.threads if args.threads else 5
 target = args.target if args.target else None
 targets = args.targets if args.targets else None
 exclude = args.exclude if args.exclude else None
@@ -36,5 +44,4 @@ blocks = args.blocks if args.blocks else 5
 redir = args.redir if args.redir else False
 urls = args.urls if args.urls else None
 
-
-oobfuzz = OOBFuzz(output, callback, target, targets, exclude, proxy, blocks, redir, urls)
+oobfuzz = OOBFuzz(output, threads, target, targets, exclude, proxy, blocks, redir, urls, stdin_targets)
