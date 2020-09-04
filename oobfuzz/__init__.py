@@ -79,7 +79,7 @@ class OOBFuzz():
         print("---------------------------------")
         with concurrent.futures.ThreadPoolExecutor(max_workers=self.threads) as executor:
             worker = executor.map(self.run, [target for target in self.targets])
-            for result in worker:
+            for _ in worker:
                 pass
 
     def run(self, target):
@@ -104,7 +104,7 @@ class OOBFuzz():
                     continue
                 value = match[2]
                 for d in self.payloads:
-                    for attack, payloadList in d.items():
+                    for _, payloadList in d.items():
                         for payload in payloadList:
                             if self.blocks == 0:
                                 # We're out of luck, exit
