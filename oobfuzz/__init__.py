@@ -124,7 +124,7 @@ class OOBFuzz():
                                 # is returned with that is len =~ 200
                                 if r.status_code == 403 and len(r.content) < 200 or r.status_code == 429 and len(r.content) < 200:
                                     # Testing has shown that at least blocks from Akamai last around 2 minutes
-                                    print(f"{str(datetime.now())} - Request was possibly blocked by WAF: Sleeping thread for 140 seconds for {self.target}")
+                                    print(f"{str(datetime.now())} - Request was possibly blocked by WAF: Sleeping thread for 140 seconds for {url}")
                                     sleep(140)
                                     r = requests.get(url, headers=headers, allow_redirects=self.redir, proxies=self.proxy, verify=False)
                                     if r.status_code == 403 and len(r.content) < 200 or r.status_code == 429 and len(r.content) < 200:
