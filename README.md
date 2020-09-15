@@ -1,4 +1,6 @@
 # oobfuzz
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCasperGN%2Foobfuzz.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCasperGN%2Foobfuzz?ref=badge_shield)
+
 
 Conduct OOB Fuzzing of targets with payloads towards callback server
 
@@ -29,3 +31,7 @@ $ python3 fuzzer.py --targets targets.txt --threads 17
 ## External libs and thanks
   
 - [GAU](https://github.com/lc/gau)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCasperGN%2Foobfuzz.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FCasperGN%2Foobfuzz?ref=badge_large)
