@@ -29,7 +29,7 @@ else:
 
 
 if args.proxy:
-    proxyMatch = re.findall('(http(?:s)?://[a-zA-Z0-9\.-]+:[\d]{1,5})', args.proxy)
+    proxyMatch = re.findall(r'(http(?:s)?://[a-zA-Z0-9\.-]+:[\d]{1,5})', args.proxy)
     if len(proxyMatch) <= 0:
         parser.print_help(sys.stderr)
         exit(1)
