@@ -1,1 +1,2 @@
 include oobfuzz/data/user-agents.txt
+include oobfuzz/data/payloads/*
