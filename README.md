@@ -1,5 +1,5 @@
 # oobfuzz
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCasperGN%2Foobfuzz.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCasperGN%2Foobfuzz?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCasperGN%2Foobfuzz.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCasperGN%2Foobfuzz?ref=badge_shield) [![Total alerts](https://img.shields.io/lgtm/alerts/g/CasperGN/oobfuzz.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CasperGN/oobfuzz/alerts/)
 
 
 Conduct OOB Fuzzing of targets with payloads towards callback server
