@@ -11,15 +11,20 @@ class InstallDependencies(install):
     def run(self):
         
         # Install Go
-        process = Popen(['/usr/bin/apt-get', 'install', 'golang', '-y'], stdout=PIPE)
-        stdout = process.communicate()[0].decode('utf-8')
+        try:
+            # Debian based
+            process = Popen(['/usr/bin/apt-get', 'install', 'golang', '-y'], stdout=PIPE)
+        except:
+            # Fedora/Red hat 
+            process = Popen(['/usr/bin/dnf', 'install', 'golang', '-y'], stdout=PIPE)
+        process.communicate()[0].decode('utf-8')
 
         # Get GAU dependency
         process = Popen(['/usr/bin/go', 'get', '-u', 'github.com/lc/gau'], stdout=PIPE)
-        stdout = process.communicate()[0].decode('utf-8')
+        process.communicate()[0].decode('utf-8')
         
         process = Popen(['/bin/cp', f'{environ["HOME"]}/go/bin/gau', '/usr/bin/gau'], stdout=PIPE)
-        stdout = process.communicate()[0].decode('utf-8')
+        process.communicate()[0].decode('utf-8')
 
         install.run(self)
 
