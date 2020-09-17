@@ -1,5 +1,5 @@
 # oobfuzz
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCasperGN%2Foobfuzz.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCasperGN%2Foobfuzz?ref=badge_shield) [![Total alerts](https://img.shields.io/lgtm/alerts/g/CasperGN/oobfuzz.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CasperGN/oobfuzz/alerts/)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCasperGN%2Foobfuzz.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCasperGN%2Foobfuzz?ref=badge_shield) [![Total alerts](https://img.shields.io/lgtm/alerts/g/CasperGN/oobfuzz.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CasperGN/oobfuzz/alerts/) [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/CasperGN/oobfuzz.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CasperGN/oobfuzz/context:python) [![GitHub stars](https://img.shields.io/github/stars/CasperGN/oobfuzz)](https://github.com/CasperGN/oobfuzz/stargazers) [![GitHub forks](https://img.shields.io/github/forks/CasperGN/oobfuzz)](https://github.com/CasperGN/ActiveDirectoryEnumeration/network) [![GitHub license](https://img.shields.io/github/license/CasperGN/oobfuzz)](https://github.com/CasperGN/oobfuzz/blob/master/LICENSE)
 
 
 Conduct OOB Fuzzing of targets with payloads towards callback server
