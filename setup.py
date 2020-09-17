@@ -14,10 +14,10 @@ class InstallDependencies(install):
         # Install Go
         try:
             # Debian based
-            process = Popen(['/usr/bin/apt-get', 'install', 'golang', '-y'], stdout=PIPE)
+            process = Popen(['/usr/bin/sudo', '/usr/bin/apt-get', 'install', 'golang', '-y'], stdout=PIPE)
         except IOError:
             # Fedora/Red hat 
-            process = Popen(['/usr/bin/dnf', 'install', 'golang', '-y'], stdout=PIPE)
+            process = Popen(['/usr/bin/sudo', '/usr/bin/dnf', 'install', 'golang', '-y'], stdout=PIPE)
         process.communicate()[0].decode('utf-8')
 
         # Get GAU dependency
@@ -25,7 +25,7 @@ class InstallDependencies(install):
         process.communicate()[0].decode('utf-8')
         
         try:
-            process = Popen(['/bin/cp', f'{environ["HOME"]}/go/bin/gau', '/usr/bin/gau'], stdout=PIPE)
+            process = Popen(['/usr/bin/sudo', '/bin/cp', f'{environ["HOME"]}/go/bin/gau', '/usr/bin/gau'], stdout=PIPE)
         except EnvironmentError:
             print('This installer requires root permissions to copy Gau into /usr/bin/gau')
             exit(1)
