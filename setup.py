@@ -41,7 +41,7 @@ setup(
         description = 'Conduct OOB Fuzzing of targets with payloads towards callback server',
         long_description = long_desc,
         long_description_content_type = 'text/markdown',
-        url = 'https://github.com/Entropy-Team/recon-oobfuzz',
+        url = 'https://github.com/CasperGN/oobfuzz',
         cmdclass={'install': InstallDependencies},
         packages = find_packages(),            
         include_package_data = True,
