@@ -1,2 +1,6 @@
 include oobfuzz/data/user-agents.txt
 include oobfuzz/data/payloads/*
+exclude fuzzer.py
+exclude .gitignore
+exclude __pycache__
+exclude .github
