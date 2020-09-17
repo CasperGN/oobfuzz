@@ -14,7 +14,7 @@ from base64 import b64encode
 
 class OOBFuzz():
 
-    def __init__(self, output, threads, target, targets, exclude, proxy, blocks, redir, urls, stdin_targets):
+    def __init__(self, output, threads, target, targets, exclude, proxy, blocks, redir, urls, stdin_targets, payloads_dir):
 
         disable_warnings()
 
@@ -27,6 +27,13 @@ class OOBFuzz():
         self.targets = []
         self.blocks = blocks
         self.redir = redir
+        if path.exists(payloads_dir):
+            self.payloads_dir = payloads_dir
+            if not self.payloads_dir[-1] == '/':
+                self.payloads_dir + '/'
+        else:
+            print(f'Couldn\'t open supplied directory of payloads at: {payloads_dir}')
+            sys.exit(1)
 
         if exclude:
             self.exclude = exclude.split(',')
@@ -39,17 +46,16 @@ class OOBFuzz():
         self.excludedParams = ['submit']
 
 
-        (_, _, filenames) = next(walk('./payloads/'))
+        (_, _, filenames) = next(walk(f'{self.payloads_dir}'))
         for filename in filenames:
-            with open(f'./payloads/{filename}', 'r') as f:
+            with open(f'{self.payloads_dir}{filename}', 'r') as f:
                 tmpDict = {filename[:filename.index(".")]: []}
                 for payload in f:
                     tmpDict[filename[:filename.index(".")]].append(quote(payload.rstrip()))
             self.payloads.append(tmpDict)
 
         self.useragents = []
-        pwd = path.dirname(path.realpath(__file__))
-        with open(f'{pwd}/data/user-agents.txt', 'r') as agents:
+        with open(f'{path.join(path.dirname(__file__), "data", "user-agents.txt")}', 'r') as agents:
             for useragent in agents:
                 self.useragents.append(useragent.rstrip())
 

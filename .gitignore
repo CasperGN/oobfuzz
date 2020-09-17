@@ -1,0 +1,5 @@
+*.cpython
+*.pyc
+build/*
+dist/*
+OOB_Fuzz.egg-info/*

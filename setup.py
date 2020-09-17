@@ -35,15 +35,16 @@ class InstallDependencies(install):
 
 setup(
         name = 'OOB Fuzz',
-        version = '0.0.1',
+        version = '0.1.0',
         author = 'Casper G. Nielsen',
         author_email = 'whopsec@protonmail.com',
         description = 'Conduct OOB Fuzzing of targets with payloads towards callback server',
         long_description = long_desc,
         long_description_content_type = 'text/markdown',
-        url = 'https://github.com/Entropy-Team/recon-oobfuzz',
+        url = 'https://github.com/CasperGN/oobfuzz',
         cmdclass={'install': InstallDependencies},
-        packages = find_packages(),
+        packages = find_packages(),            
+        include_package_data = True,
         install_requires=[
             'requests',
             'pyopenssl',
