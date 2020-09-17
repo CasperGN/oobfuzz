@@ -35,7 +35,7 @@ class InstallDependencies(install):
 
 setup(
         name = 'OOB Fuzz',
-        version = '0.0.1',
+        version = '0.1.0',
         author = 'Casper G. Nielsen',
         author_email = 'whopsec@protonmail.com',
         description = 'Conduct OOB Fuzzing of targets with payloads towards callback server',
