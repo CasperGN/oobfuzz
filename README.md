@@ -9,9 +9,13 @@ Conduct OOB Fuzzing of targets with payloads towards callback server
 
 ## Installation
 
-Run installation via setup:
+Pip:
 ```
-$ sudo -H python3 -m pip install .
+$ sudo pip install OOB-Fuzz
+```
+Or clone and install via setup:
+```
+$ git clone https://github.com/CasperGN/oobfuzz.git; cd oobfuzz; sudo -H python3 -m pip install .
 ```
 
 **Reasoning:**  
