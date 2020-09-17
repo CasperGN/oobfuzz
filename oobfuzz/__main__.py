@@ -2,6 +2,7 @@ import argparse, sys, re
 from oobfuzz import OOBFuzz
 
 parser = argparse.ArgumentParser(prog='OOBFuzz')
+parser.add_argument('payloads', type=str, help='Path to directory containing payloads')
 parser.add_argument('--output', type=str, help='File to output result to')
 parser.add_argument('--threads', type=int, help='Number of threads to fuzz (default: 5)')
 parser.add_argument('--target', type=str, help='Single target to run against')
@@ -34,6 +35,7 @@ if args.proxy:
         parser.print_help(sys.stderr)
         exit(1)
 
+payloads_dir = args.payloads
 output = args.output if args.output else None
 threads = args.threads if args.threads else 5
 target = args.target if args.target else None
@@ -44,4 +46,4 @@ blocks = args.blocks if args.blocks else 5
 redir = args.redir if args.redir else False
 urls = args.urls if args.urls else None
 
-oobfuzz = OOBFuzz(output, threads, target, targets, exclude, proxy, blocks, redir, urls, stdin_targets)
+oobfuzz = OOBFuzz(output, threads, target, targets, exclude, proxy, blocks, redir, urls, stdin_targets, payloads_dir)
