@@ -25,11 +25,15 @@ If in doubt, please chech [setup.py](setup.py) to ensure that nothing malicious 
 
 ## Run
 
-Update the payloads folder containing your own payloads.
-
-Most often want to run as such:  
+Create a folder containing payloads. The package contains examples at either data/payloads/ or when installed via pip in your `site-packages/` directory.
+  
 ```
-$ python3 fuzzer.py --targets targets.txt --threads 17
+$ python -m oobfuzz --payloads /path/to/payload/directory/ --targets targets.txt --threads 17
+```
+Or when installed via cloning:
+
+```
+$ python3 fuzzer.py --payloads /path/to/payload/directory/ --targets targets.txt --threads 17
 ```
 
 ## External libs and thanks
